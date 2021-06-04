@@ -1,8 +1,7 @@
 ---
 title: Jido Map API - DWG File Specification
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - Examples
+
 
 toc_footers:
   - <a href='https://www.jidomaps.com'>Jido Maps Inc.</a>
