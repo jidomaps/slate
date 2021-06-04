@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Jido Map API - DWG File Specification</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -286,12 +286,9 @@
     <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
       <script src="javascripts/all-a9fde460.js"></script>
 
-    <script>
-      $(function() { setupCodeCopy(); });
-    </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;Examples&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -301,10 +298,7 @@
     <div class="toc-wrapper">
       <img src="images/logo-1e815a84.png" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="Examples">Examples</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -315,279 +309,210 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+            <a href="#overview" class="toc-h1 toc-link" data-title="Overview">Overview</a>
           </li>
           <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#jido-layers" class="toc-h1 toc-link" data-title="Jido Layers">Jido Layers</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#layer-walls" class="toc-h2 toc-link" data-title="Layer: Walls">Layer: Walls</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#layer-walking-path" class="toc-h2 toc-link" data-title="Layer: Walking Path">Layer: Walking Path</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#layer-shortcuts" class="toc-h2 toc-link" data-title="Layer: Shortcuts">Layer: Shortcuts</a>
+                  </li>
+                  <li>
+                    <a href="#layer-product-displays" class="toc-h2 toc-link" data-title="Layer: Product Displays">Layer: Product Displays</a>
+                  </li>
+                  <li>
+                    <a href="#layer-navigation-points" class="toc-h2 toc-link" data-title="Layer: Navigation Points">Layer: Navigation Points</a>
+                  </li>
+                  <li>
+                    <a href="#layer-ceiling-grid-locations" class="toc-h2 toc-link" data-title="Layer: Ceiling Grid Locations">Layer: Ceiling Grid Locations</a>
+                  </li>
+                  <li>
+                    <a href="#layer-pa-locations" class="toc-h2 toc-link" data-title="Layer: PA Locations">Layer: PA Locations</a>
+                  </li>
+                  <li>
+                    <a href="#layer-hfb-locations" class="toc-h2 toc-link" data-title="Layer: HFB Locations">Layer: HFB Locations</a>
+                  </li>
+                  <li>
+                    <a href="#layer-map-features-optional" class="toc-h2 toc-link" data-title="Layer: Map Features (optional)">Layer: Map Features (optional)</a>
                   </li>
               </ul>
           </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
-          </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://www.jidomaps.com'>Jido Maps Inc.</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>The Jido Map API will offer a comprehensive API end-point to receive: </p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<ul>
+<li>Map layouts of the store</li>
+<li>Product location data</li>
+<li>Point of interest location data</li>
+<li>Dynamic navigation routes</li>
+<li>Turn-by-turn navigation instructions</li>
+</ul>
 
-<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+<p>The Jido Map API is designed to work with the current AutoCAD (DWG) layout files that are produced for each IKEA store. In order to ensure that key data is up-to-date and accurate, some additional layers are created in this DWG file that follow the clear guidelines outlined in this document. To ensure customer guidance looks and behaves in the best possible way for customers, it is important to follow these guidelines as well as keeping the DWG file in sync with Jido in the event the store layout changes.</p>
+
+<p>Should you have any questions or suggestions regarding the guidelines in this document or the Jido Map API, please reach out to Support-IKEA@jidomaps.com.</p>
+<h1 id='overview'>Overview</h1>
+<p>A well-formed DWG file will contain 9 additional jido specific layers, each named with a &quot;jido-&quot; prefix. These layers utilize AutoCad poly-lines and text elements to precisely describe:</p>
+
+<ul>
+<li>The main walking path in the Showroom and Market Hall</li>
+<li>Shortcuts in the Showroom and Market Hall</li>
+<li>The outline of the main structural walls in store that guide and restrict commercial traffic</li>
+<li>The location of walls that divide between store sections</li>
+<li>The position of all the ceiling grid locations in the store</li>
+<li>The locations of commercial areas (HFB sections, PA areas)</li>
+<li>Key points of interest in the store including: &quot;restroom&quot;, &quot;elevators&quot;, &quot;stairs&quot;, &quot;cafeteria&quot;, etc.</li>
+</ul>
+<h1 id='jido-layers'>Jido Layers</h1>
+<p>Each of these additional layers can be created by simply tracing the correct data already contained in the DWG file. Since each store likes to manage their DWG files slightly differently, it is important to consider the end result that each layer is meant for.</p>
+
+<p>Please ensure the layer uses the exact titles listed below.</p>
+<h2 id='layer-walls'>Layer: Walls</h2>
+<p><strong>Purpose:</strong> Define the walls to be shown on the customer facing map
+<strong>Title:</strong> jido-walls
+<strong>Specification:</strong> Using poly-lines, trace all the walls and permanent barriers that guide and restrict the movement of foot-traffic in the store. </p>
+
+<p>Lines should be placed as close to the center of wall as possible. </p>
+
 <blockquote>
-<p>To authorize, use this code:</p>
+<pre style="background-color: initial; padding: 0">
+<a href="https://lh3.googleusercontent.com/2EZ02VV76JQp--aEfiLYpJkT0slAFucRd1m9qp6wOn5IBDbkQ7xm8aqQrPLA74UGM4u2hn5_g8jlhWTIMCHvcA9FX27aWg-ZFVgymvUa_WgAjHUphdA5xBKI_n460JQYgZq7WFUZ">
+<img src="https://lh3.googleusercontent.com/2EZ02VV76JQp--aEfiLYpJkT0slAFucRd1m9qp6wOn5IBDbkQ7xm8aqQrPLA74UGM4u2hn5_g8jlhWTIMCHvcA9FX27aWg-ZFVgymvUa_WgAjHUphdA5xBKI_n460JQYgZq7WFUZ">
+</a>
+</pre>
 </blockquote>
-<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h3 id='notes'>Notes:</h3>
+<ul>
+<li><strong>Walls can be simplified as long as the simplification does not hide an important path which customers may need to take. For example, small gaps in walls can be removed and instead shown as contiguous walls.</strong></li>
+<li>Walls that are not in or adjacent to a space with customer foot-traffic do not need to be traced. Sections of the store where customers do not go will not be shown on the map.</li>
+<li>Walls with a door through which customers can pass should be indicated by an opening in the wall and a break in the wall-line corresponding to the width of said door.</li>
+</ul>
+<h2 id='layer-walking-path'>Layer: Walking Path</h2>
+<p><strong>Purpose:</strong> Define the main walking path that guides customer traffic in the store
+<strong>Title:</strong> jido-walking-path
+<strong>Specification:</strong> Using poly-lines, trace the main walking path that guides foot-traffic in the store.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p>Lines should be placed as close to the center of the walking path as possible.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+<p>Additionally, the start and end points of the walking path should be labeled. An AutoCAD single-line text element should be placed at the start of the walking path and at the end of the walking path. The start-block should have the text value &quot;path-start&quot; and the end-block should have the label-attribute value &quot;path-end.&quot; (This is important for automatically determining and extracting the directionality of the walking path from the map file.)</p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-</code></pre></div>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<pre style="background-color: initial; padding: 0">
+<a href="https://lh5.googleusercontent.com/ni0WV9rqLkLYYNC1u1QXH0gKT6-zbHqEj8EZMs9bYq81TSHtvSEfLWh5dVE05hMQ4GT5ZIadvPw_QOCrDW3QvsFIOK4Wozr9pbz381W8AEmU__c8BOItexQsfE6HPUs6IkM0MV-d">
+<img src="https://lh5.googleusercontent.com/ni0WV9rqLkLYYNC1u1QXH0gKT6-zbHqEj8EZMs9bYq81TSHtvSEfLWh5dVE05hMQ4GT5ZIadvPw_QOCrDW3QvsFIOK4Wozr9pbz381W8AEmU__c8BOItexQsfE6HPUs6IkM0MV-d">
+</a>
+</pre>
 </blockquote>
+<h2 id='layer-shortcuts'>Layer: Shortcuts</h2>
+<p><strong>Purpose:</strong> Define the shortcuts that connect different parts of the store that are not directly connected by the walking path.
+<strong>Title:</strong> jido-shortcuts
+<strong>Specification:</strong> Using a set of lines, make connections between different points on the walking path that are accessible by a shortcut</p>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
-</code></pre></div>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<pre style="background-color: initial; padding: 0">
+<a href="https://lh4.googleusercontent.com/D48S-jaFgyBfrILVCJZdigBU6Oo-gqbGxlo8xBTWFyQhcHofg5EVmsVkcocg12TixUNJLWPiXrUNI3KorK_pW9SYnPsb0b3M-YoRBSXuk9dsm0SaCwbiqTXjIOkG8DIDVh-4Q8TF">
+<img src="https://lh4.googleusercontent.com/D48S-jaFgyBfrILVCJZdigBU6Oo-gqbGxlo8xBTWFyQhcHofg5EVmsVkcocg12TixUNJLWPiXrUNI3KorK_pW9SYnPsb0b3M-YoRBSXuk9dsm0SaCwbiqTXjIOkG8DIDVh-4Q8TF">
+</a>
+</pre>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
+<h2 id='layer-product-displays'>Layer: Product Displays</h2>
+<p><strong>Purpose:</strong> Define the area in the store occupied by room sets, room set walls and other product display areas that impede walking traffic in the store. 
+<strong>Title:</strong> jido-product-displays
+<strong>Specification:</strong> Use rectangular or polygonal areas to identify the different room set areas or other product display areas. </p>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p><strong>Note:</strong> These regions will be used for determining efficient and unimpeded paths throughout the store and do not need to be labeled.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre></div>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<pre style="background-color: initial; padding: 0">
+<a href="https://lh5.googleusercontent.com/oZq9KhPiwqZ05tzbS-O0B97glGYpegdNXZvPO-Pl_kdfFXubAzhJCyVoBHYZ_ibs37GxCihnNvAaAWu7dR9Coaq0b4_kNM7WUErnOr5HC9ynvNv4ISIsIqTRSHXh-QUmhME1pos-">
+<img src="https://lh5.googleusercontent.com/oZq9KhPiwqZ05tzbS-O0B97glGYpegdNXZvPO-Pl_kdfFXubAzhJCyVoBHYZ_ibs37GxCihnNvAaAWu7dR9Coaq0b4_kNM7WUErnOr5HC9ynvNv4ISIsIqTRSHXh-QUmhME1pos-">
+</a>
+</pre>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
+<h2 id='layer-navigation-points'>Layer: Navigation Points</h2>
+<p><strong>Purpose:</strong> Define the set of points in the store that are destinations that a user can navigate to.
+<strong>Title:</strong> jido-navigation-points
+<strong>Specification:</strong> A set of single-line text elements with unique text values should be used to label all the possible &quot;navigation points&quot;, or destinations that a customer can navigate to in the store. Where applicable, navigation points should include at least: &quot;restroom&quot;, &quot;cafeteria&quot;, &quot;elevator&quot;, &quot;checkout&quot;, and &quot;stairs&quot;.
+<strong>Note:</strong> The size or style of the text element does not matter, but the geometry position values of the text element should be placed directly on top of the point on the map that corresponds to that label.</p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre></div>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<pre style="background-color: initial; padding: 0">
+<a href="https://lh3.googleusercontent.com/0K_y787hYlwl_-k8O4dcfnoYXz2x3zfz-SMpIIm7JteFISGGTGQs3O0ErJJajLXdAYio6TV_zFCo1JsA1sgUWDhJw_cqHjQ5Y0x4cFd-Eq-vVGO_KbOdFoRf818iBVPRNgZmf6JX">
+<img src="https://lh3.googleusercontent.com/0K_y787hYlwl_-k8O4dcfnoYXz2x3zfz-SMpIIm7JteFISGGTGQs3O0ErJJajLXdAYio6TV_zFCo1JsA1sgUWDhJw_cqHjQ5Y0x4cFd-Eq-vVGO_KbOdFoRf818iBVPRNgZmf6JX">
+</a>
+</pre>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
+<h2 id='layer-ceiling-grid-locations'>Layer: Ceiling Grid Locations</h2>
+<p><strong>Purpose:</strong> Define the set of points that correspond to ceiling-grid-locations on the map.
+<strong>Title:</strong> jido-grid-locations
+<strong>Specification:</strong> A set of single-line text elements with unique text values that correspond to a unique grid location on the map.
+<strong>Note:</strong> The size or style of the text element does not matter, but the geometry position values of the text element should be placed directly on top of the point on the map that corresponds to that label.</p>
+<h2 id='layer-pa-locations'>Layer: PA Locations</h2>
+<p><strong>Purpose:</strong> Define the set of points that correspond to PA locations on the map.
+<strong>Title:</strong> jido-PA-locations
+<strong>Specification:</strong> A set of single-line text elements with unique text values that correspond to a PA locations on the map. Optionally, PA regions can be represented by non-overlapping rectangles or polygonal regions corresponding to the area of that PA region.
+<strong>Note:</strong> The size or style of the text element does not matter, but the geometry position values of the text element should be placed directly on top of the point on the map that corresponds to that label.</p>
+<h2 id='layer-hfb-locations'>Layer: HFB Locations</h2>
+<p><strong>Purpose:</strong> Define the set of points that correspond to HFB locations on the map.
+<strong>Title:</strong> jido-HFB-locations
+<strong>Specification:</strong> A set of single-line text elements with unique text values that correspond to a HFB locations on the map. Optionally, HFB regions can be represented by non-overlapping rectangles or polygonal regions corresponding to the area of that HFB region.
+<strong>Note:</strong> The size or style of the text element does not matter, but the geometry position values of the text element should be placed directly on top of the point on the map that corresponds to that label.</p>
+<h2 id='layer-map-features-optional'>Layer: Map Features (optional)</h2>
+<p><strong>Purpose:</strong> Define the set of points or regions on the map that may be displayed in a view of the map generated for users.
+<strong>Title:</strong> jido-map-features
+<strong>Specification:</strong> Map features may include the rectangular region occupied by the elevators or the stairs in the store, roomsets, signage, etc. There are no restrictions on the shape or name of a map-features. The map-features layer can contain any number of labels of any shape or type including poly-lines and rectangular regions. </p>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>The jido-map layers to include in the dwg file for extraction and parsing by our backend:</p>
 
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
-</tr>
-</tbody></table>
+<blockquote>
+<pre style="background-color: initial; padding: 0">
+<a href="https://lh4.googleusercontent.com/iXp1dJ7VtrwszHr97AgKzLJOOvWbW53qY_yrM3Xk6ePYFchIvh0tHBnm7LN4jziM7rgpBqRqf1qdDbhzgnWaaiPYtL7Iy1ZFisLc1Zuob_fFCDAcA_iVp4eIK469DQfSsqpHHFH-">
+<img src="https://lh4.googleusercontent.com/iXp1dJ7VtrwszHr97AgKzLJOOvWbW53qY_yrM3Xk6ePYFchIvh0tHBnm7LN4jziM7rgpBqRqf1qdDbhzgnWaaiPYtL7Iy1ZFisLc1Zuob_fFCDAcA_iVp4eIK469DQfSsqpHHFH-">
+</a>
+</pre>
+</blockquote>
+
+<p>An IKEA dwg map with some additional annotations including:</p>
+
+<ol>
+<li>&quot;path-start&quot; label (jido-walking-path layer)</li>
+<li>&quot;restroom&quot; label (jido-navigation-points layer)</li>
+<li>Lines for wall positions (jido-walls layer)</li>
+<li>Lines for the walking path (jido-walking-path layer)</li>
+</ol>
+
+<blockquote>
+<pre style="background-color: initial; padding: 0">
+<a href="https://lh3.googleusercontent.com/RCeF77REiDkPXYsDBQE9rxF_JBf0U9lB1d17lojJuAGJZWMrEXUQE2A73ABTf18nEBiJ4WqKMbMHAKOBgxqNCb52NNMbxDfp3SeSLF3U5OyVMMZD0wJ_bR_7n_7Wkn5fxsrYK95A">
+<img src="https://lh3.googleusercontent.com/RCeF77REiDkPXYsDBQE9rxF_JBf0U9lB1d17lojJuAGJZWMrEXUQE2A73ABTf18nEBiJ4WqKMbMHAKOBgxqNCb52NNMbxDfp3SeSLF3U5OyVMMZD0wJ_bR_7n_7Wkn5fxsrYK95A">
+</a>
+</pre>
+
+<pre style="background-color: initial; padding: 0">
+<a href="https://lh5.googleusercontent.com/QB1bmNeWY0nQijI1Xk0LxFN6mACSv1T4-0TLWwZR0GmrcoUkQGjU0ykQWbIfVb6165vLsTgcGyxOuJRxlO_nnZAQZDr4LWTajdp341kciQp3dS2XUmjFOkTh5RyeRuW7LRYJtUSE">
+<img src="https://lh5.googleusercontent.com/QB1bmNeWY0nQijI1Xk0LxFN6mACSv1T4-0TLWwZR0GmrcoUkQGjU0ykQWbIfVb6165vLsTgcGyxOuJRxlO_nnZAQZDr4LWTajdp341kciQp3dS2XUmjFOkTh5RyeRuW7LRYJtUSE">
+</a>
+</pre>
+</blockquote>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="Examples">Examples</a>
           </div>
       </div>
     </div>
