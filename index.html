@@ -311,14 +311,43 @@
                   <li>
                     <a href="#overview" class="toc-h2 toc-link" data-title="Overview">Overview</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#jido-layers" class="toc-h1 toc-link" data-title="Jido Layers">Jido Layers</a>
+              <ul class="toc-list-h2">
                   <li>
-                    <a href="#jido-layers" class="toc-h2 toc-link" data-title="Jido Layers">Jido Layers</a>
+                    <a href="#layer-walls" class="toc-h2 toc-link" data-title="Layer: Walls">Layer: Walls</a>
+                  </li>
+                  <li>
+                    <a href="#layer-walking-path" class="toc-h2 toc-link" data-title="Layer: Walking Path">Layer: Walking Path</a>
+                  </li>
+                  <li>
+                    <a href="#layer-shortcuts" class="toc-h2 toc-link" data-title="Layer: Shortcuts">Layer: Shortcuts</a>
+                  </li>
+                  <li>
+                    <a href="#layer-product-displays" class="toc-h2 toc-link" data-title="Layer: Product Displays">Layer: Product Displays</a>
+                  </li>
+                  <li>
+                    <a href="#layer-navigation-points" class="toc-h2 toc-link" data-title="Layer: Navigation Points">Layer: Navigation Points</a>
+                  </li>
+                  <li>
+                    <a href="#layer-ceiling-grid-locations" class="toc-h2 toc-link" data-title="Layer: Ceiling Grid Locations">Layer: Ceiling Grid Locations</a>
+                  </li>
+                  <li>
+                    <a href="#layer-pa-locations" class="toc-h2 toc-link" data-title="Layer: PA Locations">Layer: PA Locations</a>
+                  </li>
+                  <li>
+                    <a href="#layer-hfb-locations" class="toc-h2 toc-link" data-title="Layer: HFB Locations">Layer: HFB Locations</a>
+                  </li>
+                  <li>
+                    <a href="#layer-map-features-optional" class="toc-h2 toc-link" data-title="Layer: Map Features (optional)">Layer: Map Features (optional)</a>
                   </li>
               </ul>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='https://www.jidomaps.com'>Jido Maps Inc.</a></li>
+            <li><a href='https://www.jidomaps.com'>Jido Inc.</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -350,14 +379,16 @@
 <li>The locations of commercial areas (HFB sections, PA areas)</li>
 <li>Key points of interest in the store including: &quot;restroom&quot;, &quot;elevators&quot;, &quot;stairs&quot;, &quot;cafeteria&quot;, etc.</li>
 </ul>
-<h2 id='jido-layers'>Jido Layers</h2>
+<h1 id='jido-layers'>Jido Layers</h1>
 <p>Each of these additional layers can be created by simply tracing the correct data already contained in the DWG file. Since each store likes to manage their DWG files slightly differently, it is important to consider the end result that each layer is meant for.</p>
 
 <p>Please ensure the layer uses the exact titles listed below.</p>
-<h3 id='layer-walls'>Layer: Walls</h3>
-<p><strong>Purpose:</strong> Define the walls to be shown on the customer facing map
-<strong>Title:</strong> jido-walls
-<strong>Specification:</strong> Using poly-lines, trace all the walls and permanent barriers that guide and restrict the movement of foot-traffic in the store. </p>
+<h2 id='layer-walls'>Layer: Walls</h2>
+<p><strong>Purpose:</strong> Define the walls to be shown on the customer facing map</p>
+
+<p><strong>Title:</strong> jido-walls</p>
+
+<p><strong>Specification:</strong> Using poly-lines, trace all the walls and permanent barriers that guide and restrict the movement of foot-traffic in the store. </p>
 
 <p>Lines should be placed as close to the center of wall as possible. </p>
 
@@ -368,16 +399,18 @@
 </a>
 </pre>
 </blockquote>
-<h4 id='notes'>Notes:</h4>
+<h3 id='notes'>Notes:</h3>
 <ul>
 <li><strong>Walls can be simplified as long as the simplification does not hide an important path which customers may need to take. For example, small gaps in walls can be removed and instead shown as contiguous walls.</strong></li>
 <li>Walls that are not in or adjacent to a space with customer foot-traffic do not need to be traced. Sections of the store where customers do not go will not be shown on the map.</li>
 <li>Walls with a door through which customers can pass should be indicated by an opening in the wall and a break in the wall-line corresponding to the width of said door.</li>
 </ul>
-<h3 id='layer-walking-path'>Layer: Walking Path</h3>
-<p><strong>Purpose:</strong> Define the main walking path that guides customer traffic in the store
-<strong>Title:</strong> jido-walking-path
-<strong>Specification:</strong> Using poly-lines, trace the main walking path that guides foot-traffic in the store.</p>
+<h2 id='layer-walking-path'>Layer: Walking Path</h2>
+<p><strong>Purpose:</strong> Define the main walking path that guides customer traffic in the store</p>
+
+<p><strong>Title:</strong> jido-walking-path</p>
+
+<p><strong>Specification:</strong> Using poly-lines, trace the main walking path that guides foot-traffic in the store.</p>
 
 <p>Lines should be placed as close to the center of the walking path as possible.</p>
 
@@ -390,10 +423,12 @@
 </a>
 </pre>
 </blockquote>
-<h3 id='layer-shortcuts'>Layer: Shortcuts</h3>
-<p><strong>Purpose:</strong> Define the shortcuts that connect different parts of the store that are not directly connected by the walking path.
-<strong>Title:</strong> jido-shortcuts
-<strong>Specification:</strong> Using a set of lines, make connections between different points on the walking path that are accessible by a shortcut</p>
+<h2 id='layer-shortcuts'>Layer: Shortcuts</h2>
+<p><strong>Purpose:</strong> Define the shortcuts that connect different parts of the store that are not directly connected by the walking path.</p>
+
+<p><strong>Title:</strong> jido-shortcuts</p>
+
+<p><strong>Specification:</strong> Using a set of lines, make connections between different points on the walking path that are accessible by a shortcut</p>
 
 <blockquote>
 <pre style="background-color: initial; padding: 0">
@@ -402,10 +437,12 @@
 </a>
 </pre>
 </blockquote>
-<h3 id='layer-product-displays'>Layer: Product Displays</h3>
-<p><strong>Purpose:</strong> Define the area in the store occupied by room sets, room set walls and other product display areas that impede walking traffic in the store. 
-<strong>Title:</strong> jido-product-displays
-<strong>Specification:</strong> Use rectangular or polygonal areas to identify the different room set areas or other product display areas. </p>
+<h2 id='layer-product-displays'>Layer: Product Displays</h2>
+<p><strong>Purpose:</strong> Define the area in the store occupied by room sets, room set walls and other product display areas that impede walking traffic in the store. </p>
+
+<p><strong>Title:</strong> jido-product-displays</p>
+
+<p><strong>Specification:</strong> Use rectangular or polygonal areas to identify the different room set areas or other product display areas. </p>
 
 <p><strong>Note:</strong> These regions will be used for determining efficient and unimpeded paths throughout the store and do not need to be labeled.</p>
 
@@ -416,11 +453,14 @@
 </a>
 </pre>
 </blockquote>
-<h3 id='layer-navigation-points'>Layer: Navigation Points</h3>
-<p><strong>Purpose:</strong> Define the set of points in the store that are destinations that a user can navigate to.
-<strong>Title:</strong> jido-navigation-points
-<strong>Specification:</strong> A set of single-line text elements with unique text values should be used to label all the possible &quot;navigation points&quot;, or destinations that a customer can navigate to in the store. Where applicable, navigation points should include at least: &quot;restroom&quot;, &quot;cafeteria&quot;, &quot;elevator&quot;, &quot;checkout&quot;, and &quot;stairs&quot;.
-<strong>Note:</strong> The size or style of the text element does not matter, but the geometry position values of the text element should be placed directly on top of the point on the map that corresponds to that label.</p>
+<h2 id='layer-navigation-points'>Layer: Navigation Points</h2>
+<p><strong>Purpose:</strong> Define the set of points in the store that are destinations that a user can navigate to.</p>
+
+<p><strong>Title:</strong> jido-navigation-points</p>
+
+<p><strong>Specification:</strong> A set of single-line text elements with unique text values should be used to label all the possible &quot;navigation points&quot;, or destinations that a customer can navigate to in the store. Where applicable, navigation points should include at least: &quot;restroom&quot;, &quot;cafeteria&quot;, &quot;elevator&quot;, &quot;checkout&quot;, and &quot;stairs&quot;.</p>
+
+<p><strong>Note:</strong> The size or style of the text element does not matter, but the geometry position values of the text element should be placed directly on top of the point on the map that corresponds to that label.</p>
 
 <blockquote>
 <pre style="background-color: initial; padding: 0">
@@ -429,25 +469,36 @@
 </a>
 </pre>
 </blockquote>
-<h3 id='layer-ceiling-grid-locations'>Layer: Ceiling Grid Locations</h3>
-<p><strong>Purpose:</strong> Define the set of points that correspond to ceiling-grid-locations on the map.
-<strong>Title:</strong> jido-grid-locations
-<strong>Specification:</strong> A set of single-line text elements with unique text values that correspond to a unique grid location on the map.
-<strong>Note:</strong> The size or style of the text element does not matter, but the geometry position values of the text element should be placed directly on top of the point on the map that corresponds to that label.</p>
-<h3 id='layer-pa-locations'>Layer: PA Locations</h3>
-<p><strong>Purpose:</strong> Define the set of points that correspond to PA locations on the map.
-<strong>Title:</strong> jido-PA-locations
-<strong>Specification:</strong> A set of single-line text elements with unique text values that correspond to a PA locations on the map. Optionally, PA regions can be represented by non-overlapping rectangles or polygonal regions corresponding to the area of that PA region.
-<strong>Note:</strong> The size or style of the text element does not matter, but the geometry position values of the text element should be placed directly on top of the point on the map that corresponds to that label.</p>
-<h3 id='layer-hfb-locations'>Layer: HFB Locations</h3>
-<p><strong>Purpose:</strong> Define the set of points that correspond to HFB locations on the map.
-<strong>Title:</strong> jido-HFB-locations
-<strong>Specification:</strong> A set of single-line text elements with unique text values that correspond to a HFB locations on the map. Optionally, HFB regions can be represented by non-overlapping rectangles or polygonal regions corresponding to the area of that HFB region.
-<strong>Note:</strong> The size or style of the text element does not matter, but the geometry position values of the text element should be placed directly on top of the point on the map that corresponds to that label.</p>
-<h3 id='layer-map-features-optional'>Layer: Map Features (optional)</h3>
-<p><strong>Purpose:</strong> Define the set of points or regions on the map that may be displayed in a view of the map generated for users.
-<strong>Title:</strong> jido-map-features
-<strong>Specification:</strong> Map features may include the rectangular region occupied by the elevators or the stairs in the store, roomsets, signage, etc. There are no restrictions on the shape or name of a map-features. The map-features layer can contain any number of labels of any shape or type including poly-lines and rectangular regions. </p>
+<h2 id='layer-ceiling-grid-locations'>Layer: Ceiling Grid Locations</h2>
+<p><strong>Purpose:</strong> Define the set of points that correspond to ceiling-grid-locations on the map.</p>
+
+<p><strong>Title:</strong> jido-grid-locations</p>
+
+<p><strong>Specification:</strong> A set of single-line text elements with unique text values that correspond to a unique grid location on the map.</p>
+
+<p><strong>Note:</strong> The size or style of the text element does not matter, but the geometry position values of the text element should be placed directly on top of the point on the map that corresponds to that label.</p>
+<h2 id='layer-pa-locations'>Layer: PA Locations</h2>
+<p><strong>Purpose:</strong> Define the set of points that correspond to PA locations on the map.</p>
+
+<p><strong>Title:</strong> jido-PA-locations</p>
+
+<p><strong>Specification:</strong> A set of single-line text elements with unique text values that correspond to a PA locations on the map. Optionally, PA regions can be represented by non-overlapping rectangles or polygonal regions corresponding to the area of that PA region.</p>
+
+<p><strong>Note:</strong> The size or style of the text element does not matter, but the geometry position values of the text element should be placed directly on top of the point on the map that corresponds to that label.</p>
+<h2 id='layer-hfb-locations'>Layer: HFB Locations</h2>
+<p><strong>Purpose:</strong> Define the set of points that correspond to HFB locations on the map.</p>
+
+<p><strong>Title:</strong> jido-HFB-locations</p>
+
+<p><strong>Specification:</strong> A set of single-line text elements with unique text values that correspond to a HFB locations on the map. Optionally, HFB regions can be represented by non-overlapping rectangles or polygonal regions corresponding to the area of that HFB region.</p>
+
+<p><strong>Note:</strong> The size or style of the text element does not matter, but the geometry position values of the text element should be placed directly on top of the point on the map that corresponds to that label.</p>
+<h2 id='layer-map-features-optional'>Layer: Map Features (optional)</h2>
+<p><strong>Purpose:</strong> Define the set of points or regions on the map that may be displayed in a view of the map generated for users.</p>
+
+<p><strong>Title:</strong> jido-map-features</p>
+
+<p><strong>Specification:</strong> Map features may include the rectangular region occupied by the elevators or the stairs in the store, roomsets, signage, etc. There are no restrictions on the shape or name of a map-features. The map-features layer can contain any number of labels of any shape or type including poly-lines and rectangular regions. </p>
 
 <p>The jido-map layers to include in the dwg file for extraction and parsing by our backend:</p>
 
